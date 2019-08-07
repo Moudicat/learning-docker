@@ -1,0 +1,14 @@
+# 想了解更多看这个链接 -> https://docs.docker.com/compose/compose-file/
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - 2233:2233
+    environment:
+      - REDIS_URL=redis://web_redis
+    depends_on:
+      - web_redis
+  web_redis:
+    image: redis:3.2-alpine
